@@ -32,7 +32,8 @@ Event listener to get card and card classes
 
  */
  document.addEventListener ('click',function(event){
- 	selectedCard =event.target.firstElementChild;;
+ 	selectedCard =event.target;
+ 	flipCard(selectedCard)
 })
 
 
@@ -40,7 +41,9 @@ Event listener to get card and card classes
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  */
 
- function getCard (selectedCard) {
+ function flipCard (selectedCard) {
+ 	selectedCard.classList.add("open","show")
+
  }
  /*
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
