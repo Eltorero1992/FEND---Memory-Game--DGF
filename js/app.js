@@ -53,27 +53,25 @@ Event listener to get card and card classes
 
  function createCardList (selectedCard) {
 
- 	let cardList = document.querySelectorAll(".open",".show")
- 	if (cardList.length === 2 && cardList[0].firstElementChild.classList.value === cardList[1].firstElementChild.classList.value){
- 		console.log(true);
- 	} else {
- 		console.log(false);
- 	}
- 		
-
-
-
- 	 /*
-	}
+ 	let cardList = document.querySelectorAll(".open",".show");
+ 
+ /*
  *  - if the list already has another card, check to see if the two cards match
  */
+		if (cardList.length === 2 && cardList[0].firstElementChild.classList.value === cardList[1].firstElementChild.classList.value){
 
- }
-
-
-
- /*
+/*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+*/
+
+ 		for (let card of cardList){
+ 			card.classList.remove("open","show");
+ 			card.classList.add("match");
+ 		}		
+ 	};
+
+}
+ /*
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
