@@ -32,10 +32,15 @@ Event listener to get card and card classes
 
  */
  document.addEventListener ('click',function(event){
+ 	
+ 	if (event.target.className === "card"){
+ 	console.log(true)
  	let selectedCard = event.target;
  	counterUp ();
  	flipCard (selectedCard);
  	createCardList (selectedCard);
+ 	}
+
 })
 
  /*
