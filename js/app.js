@@ -33,6 +33,7 @@ Event listener to get card and card classes
  */
  document.addEventListener ('click',function(event){
  	let selectedCard = event.target;
+ 	counterUp ();
  	flipCard (selectedCard);
  	createCardList (selectedCard);
 })
@@ -90,9 +91,14 @@ Event listener to get card and card classes
 			console.log(cardList)
 	}
 }
-
-
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ */
+
+function counterUp () {
+	document.querySelector(".moves").innerHTML = Number(document.querySelector(".moves").innerHTML) + 1   
+}
+
+ /*
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
