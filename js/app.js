@@ -34,7 +34,6 @@ const cardList = document.getElementsByClassName('card');
 for (let card of cardList){
 
 	 card.addEventListener('click',function(event){
-	 	counterUp ();
 	 	flipCard (event.target);
 	 	createCardList (event.target);
 	});
@@ -61,7 +60,7 @@ for (let card of cardList){
  *  - if the list already has another card, check to see if the two cards match
  */
 		if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value === openCardList[1].firstElementChild.classList.value){
-
+			counterUp ();
 /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
 */
@@ -70,7 +69,8 @@ for (let card of cardList){
 	 			card.classList.add("match");
 	 		}
 
-	 		openCardList = [];	
+	 		openCardList = [];
+	 		allCardsMatched()	
  	}
 
 /*
@@ -78,7 +78,7 @@ for (let card of cardList){
 */
 
 		else if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value !== openCardList[1].firstElementChild.classList.value) {	
-
+			counterUp ();
 	 		setTimeout(function () { 
 	 			for (let card of openCardList){
 	 			card.classList.remove("open","show");
@@ -94,7 +94,7 @@ for (let card of cardList){
 
 	}
 
-	allCardsMatched()
+	
 }
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
