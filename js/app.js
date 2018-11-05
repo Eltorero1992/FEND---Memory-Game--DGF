@@ -31,17 +31,18 @@ function shuffle(array) {
 Event listener to get card and card classes
 
  */
- document.addEventListener ('click',function(event){
- 	
- 	if (event.target.className === "card"){
- 	console.log(true)
- 	let selectedCard = event.target;
- 	counterUp ();
- 	flipCard (selectedCard);
- 	createCardList (selectedCard);
- 	}
 
-})
+
+const cardList = document.getElementsByClassName('card');
+
+for (let card of cardList){
+
+	 card.addEventListener('click',function(event){
+	 	counterUp ();
+	 	flipCard (event.target);
+	 	createCardList (event.target);
+	});
+}
 
  /*
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -58,42 +59,42 @@ Event listener to get card and card classes
 
  function createCardList (selectedCard) {
 
- 	let cardList = document.querySelectorAll(".open",".show");
+ 	let openCardList = document.querySelectorAll(".open",".show");
  
  /*
  *  - if the list already has another card, check to see if the two cards match
  */
-		if (cardList.length === 2 && cardList[0].firstElementChild.classList.value === cardList[1].firstElementChild.classList.value){
+		if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value === openCardList[1].firstElementChild.classList.value){
 
 /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-*/			console.log(cardList)
+*/			console.log(openCardList)
 
-	 		for (let card of cardList){
+	 		for (let card of openCardList){
 	 			card.classList.remove("open","show");
 	 			card.classList.add("match");
 	 		}
 
-	 		cardList = [];
+	 		openCardList = [];
 
-	 		console.log(cardList)		
+	 		console.log(openCardList)		
  	}
 
 /*
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 */
 
-		else if (cardList.length === 2 && cardList[0].firstElementChild.classList.value !== cardList[1].firstElementChild.classList.value) {
+		else if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value !== openCardList[1].firstElementChild.classList.value) {
  			
- 			console.log(cardList)		
+ 			console.log(openCardList)		
 
 	 		setTimeout(function () { 
-	 			for (let card of cardList){
+	 			for (let card of openCardList){
 	 			card.classList.remove("open","show");
 	 			}	
-				cardList = [];}, 750);
+				openCardList = [];}, 750);
 
-			console.log(cardList)
+			console.log(openCardList)
 	}
 }
  /*
@@ -106,4 +107,9 @@ function counterUp () {
 
  /*
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
+
+
+ /*
+ * 	 + reset button flips all cards down	
  */
