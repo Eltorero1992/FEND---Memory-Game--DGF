@@ -85,6 +85,13 @@ for (let card of cardList){
 	 			}	
 				openCardList = [];}, 750);
 
+	 		document.querySelector(".fa-star").classList.add("fa-star-o")
+			document.querySelector(".fa-star").classList.remove("fa-star")
+
+			if (document.querySelector(".stars").childElementCount === document.querySelectorAll(".fa-star-o").length) {
+				console.log("You Lost \! ")
+			}
+
 	}
 
 	allCardsMatched()
@@ -106,9 +113,19 @@ function allCardsMatched (){
 	let cardsMatched = document.querySelectorAll(".match")
 
 	if (cardList.length === cardsMatched.length) {
-		console.log("Yes \! You've won\!")
+		console.log("Yes \! You've won \!")
 	}
 
+}
+
+function win () {
+
+	for (let card of cardList){
+	 	card.classList.remove("open","show");
+	 	card.classList.add("match");
+	 };
+
+	allCardsMatched();
 }
 
  /*
