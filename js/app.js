@@ -44,16 +44,16 @@ for (let card of cardList){
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  */
 
- function flipCard (selectedCard) {
+ function flipCard (card) {
 
- 	selectedCard.classList.add("open","show");
+ 	card.classList.add("open","show");
  }
 
  /*
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  */
 
- function createCardList (selectedCard) {
+ function createCardList (card) {
 
  	let openCardList = document.querySelectorAll(".open",".show");
  
@@ -64,25 +64,20 @@ for (let card of cardList){
 
 /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-*/			console.log(openCardList)
-
+*/
 	 		for (let card of openCardList){
 	 			card.classList.remove("open","show");
 	 			card.classList.add("match");
 	 		}
 
-	 		openCardList = [];
-
-	 		console.log(openCardList)		
+	 		openCardList = [];	
  	}
 
 /*
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 */
 
-		else if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value !== openCardList[1].firstElementChild.classList.value) {
- 			
- 			console.log(openCardList)		
+		else if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value !== openCardList[1].firstElementChild.classList.value) {	
 
 	 		setTimeout(function () { 
 	 			for (let card of openCardList){
@@ -90,8 +85,9 @@ for (let card of cardList){
 	 			}	
 				openCardList = [];}, 750);
 
-			console.log(openCardList)
 	}
+
+	allCardsMatched()
 }
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
@@ -105,6 +101,15 @@ function counterUp () {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+function allCardsMatched (){
+
+	let cardsMatched = document.querySelectorAll(".match")
+
+	if (cardList.length === cardsMatched.length) {
+		console.log("Yes \! You've won\!")
+	}
+
+}
 
  /*
  * 	 + reset button flips all cards down	
