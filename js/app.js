@@ -27,11 +27,7 @@ function shuffle(array) {
 
 /*
  * set up the event listener for a card. If a card is clicked:
- 
-Event listener to get card and card classes
-
  */
-
 
 const cardList = document.getElementsByClassName('card');
 
@@ -113,3 +109,16 @@ function counterUp () {
  /*
  * 	 + reset button flips all cards down	
  */
+
+ const resetButton = document.querySelector(".restart");
+
+ resetButton.addEventListener("click", function(){
+	for (let card of cardList){
+	 	card.classList.remove("open","show","match");
+	 }
+
+	 document.querySelector(".moves").innerHTML = 0;
+
+ })
+
+
