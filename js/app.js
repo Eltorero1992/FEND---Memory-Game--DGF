@@ -29,7 +29,7 @@ function shuffle(array) {
  * set up the event listener for a card. If a card is clicked:
  */
 
-const cardList = document.getElementsByClassName('card');
+const cardList = document.querySelectorAll('.card');
 
 for (let card of cardList){
 
@@ -139,7 +139,14 @@ function win () {
 	 	card.classList.remove("open","show","match");
 	 }
 
-	 document.querySelector(".moves").innerHTML = 0;
+	document.querySelector(".moves").innerHTML = 0;
+
+	let emptyStars = document.querySelectorAll(".fa-star-o");
+
+	for (let emptyStar of emptyStars) {
+		emptyStar.classList.remove("fa-star-o");
+		emptyStar.classList.add("fa-star");
+	}
 
  })
 
