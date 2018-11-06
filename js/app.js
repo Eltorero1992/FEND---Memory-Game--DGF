@@ -2,16 +2,15 @@
  * Create a list that holds all of your cards
  */
 
+const cardList = document.querySelectorAll('.card');
 
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+function shuffle([...array]) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -26,10 +25,21 @@ function shuffle(array) {
 }
 
 /*
+ *   - loop through each card and create its HTML
+ */
+
+
+ 
+ /*
+ *   - add each card's HTML to the page
+ */
+
+
+
+/*
  * set up the event listener for a card. If a card is clicked:
  */
 
-const cardList = document.querySelectorAll('.card');
 
 for (let card of cardList){
 
