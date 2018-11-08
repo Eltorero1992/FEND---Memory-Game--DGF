@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-const cardList = document.querySelectorAll('.card');
+let cardList = document.querySelectorAll('.card');
 
 /*
  * Display the cards on the page
@@ -22,39 +22,55 @@ function shuffle([...array]) {
     }
 
     return array;
+
 }
 
 /*
  *   - loop through each card and create its HTML
  */
 
+function createDeck () {
 
- 
- /*
+	let newDeck = shuffle(cardList)
+	
+
+	for (let card of newDeck) {
+		let newCard = "<li class=\"card\">" + card.innerHTML + "</li>";
+		document.querySelector(".deck").firstElementChild.remove()
+/*
  *   - add each card's HTML to the page
  */
+		document.querySelector(".deck").insertAdjacentHTML("beforeend",newCard);
+	}
 
-
+};
 
 /*
  * set up the event listener for a card. If a card is clicked:
  */
 
+/*
+* - [Legacy] Event listener for card using a for of loop, needs to be re-executed on reset button, see reset button
+*/
 
-for (let card of cardList){
+	// for (let card of cardList){
+	// 	 card.addEventListener('click',function(event){
+	// 	 	flipCard (event.target);
+	// 	 	createCardList (event.target);
+	// 	});
+	// }
 
-	 card.addEventListener('click',function(event){
-	 	flipCard (event.target);
-	 	createCardList (event.target);
-	});
-}
+document.addEventListener('click',function(event){
+	if (event.target.className === "card" ){
+		flipCard (event.target);
+		createCardList (event.target);}
+});
 
  /*
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  */
 
  function flipCard (card) {
-
  	card.classList.add("open","show");
  }
 
@@ -144,7 +160,8 @@ function win () {
 
  const resetButton = document.querySelector(".restart");
 
- resetButton.addEventListener("click", function(){
+ resetButton.addEventListener("click", function reset (){
+	
 	for (let card of cardList){
 	 	card.classList.remove("open","show","match");
 	 }
@@ -158,6 +175,20 @@ function win () {
 		emptyStar.classList.add("fa-star");
 	}
 
- })
+	createDeck();
 
+/*
+* - [Legacy] cardList constant and for of loop needs to be re-defined after new DOM has been created 
+*/
+
+	// cardList = document.querySelectorAll('.card');
+
+	// for (let card of cardList){
+	// 	 card.addEventListener('click',function(event){
+	// 	 	flipCard (event.target);
+	// 	 	createCardList (event.target);
+	// 	});
+	// }
+
+ });
 
