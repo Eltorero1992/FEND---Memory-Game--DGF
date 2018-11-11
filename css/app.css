@@ -107,3 +107,32 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+* Styles for Outcome Screen
+*/
+
+
+.outcomeScreen {
+    position: fixed;
+    background-color: white;
+    height: 30%;
+    width: 100%;
+    -webkit-box-shadow: 10px 10px 33px -5px rgba(0,0,0,0.27);
+    border-radius: 15px;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    width: 50%;
+    display: block;
+    
+}   
+
+.oSTitle {
+    margin-top: 7%;
+}
+
+.oSTitle2{
+    font-size: 20px;
+}
+

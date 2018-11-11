@@ -140,8 +140,8 @@ function allCardsMatched (){
 
 	if (cardList.length === cardsMatched.length) {
 		console.log("Yes \! You've won \!")
+		outcomeScreen();
 	}
-
 }
 
 function win () {
@@ -152,6 +152,7 @@ function win () {
 	 };
 
 	allCardsMatched();
+	
 }
 
  /*
@@ -160,7 +161,9 @@ function win () {
 
  const resetButton = document.querySelector(".restart");
 
- resetButton.addEventListener("click", function reset (){
+ resetButton.addEventListener("click",reset) 
+
+ function reset (){
 	
 	for (let card of cardList){
 	 	card.classList.remove("open","show","match");
@@ -190,5 +193,25 @@ function win () {
 	// 	});
 	// }
 
- });
+ };
 
+function outcomeScreen (){
+
+		let promptScreen = "<div class=\"outcomeScreen\"> <h1 class=\"oSTitle\"> You've won\! <\/h1> <h1 class=\"oSTitle2\"> You have finished the memory game in " + document.querySelector(".moves").innerHTML + " moves <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>" 
+		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
+		
+		document.querySelector(".oSButton").addEventListener("click",function(event){
+			document.querySelector(".outcomeScreen").remove();
+			reset();
+
+})
+
+}
+
+
+
+
+
+function iWin (){
+	win()
+}
