@@ -115,7 +115,8 @@ document.addEventListener('click',function(event){
 			document.querySelector(".fa-star").classList.remove("fa-star")
 
 			if (document.querySelector(".stars").childElementCount === document.querySelectorAll(".fa-star-o").length) {
-				console.log("You Lost \! ")
+				const message = "<h1 class=\"oSTitle\"> You've lost!\! <\/h1> <h1 class=\"oSTitle2\"> You did a total of "
+				outcomeScreen(message)
 			}
 
 	}
@@ -139,8 +140,10 @@ function allCardsMatched (){
 	let cardsMatched = document.querySelectorAll(".match")
 
 	if (cardList.length === cardsMatched.length) {
+		const message = "<h1 class=\"oSTitle\"> You've won\! <\/h1> <h1 class=\"oSTitle2\"> You have finished the memory game in "
+
 		console.log("Yes \! You've won \!")
-		outcomeScreen();
+		outcomeScreen(message);
 	}
 }
 
@@ -195,9 +198,9 @@ function win () {
 
  };
 
-function outcomeScreen (){
+function outcomeScreen (message){
 
-		let promptScreen = "<div class=\"outcomeScreen\"> <h1 class=\"oSTitle\"> You've won\! <\/h1> <h1 class=\"oSTitle2\"> You have finished the memory game in " + document.querySelector(".moves").innerHTML + " moves <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>" 
+		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>" 
 		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
 		
 		document.querySelector(".oSButton").addEventListener("click",function(event){
