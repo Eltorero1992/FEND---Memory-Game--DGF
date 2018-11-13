@@ -207,7 +207,7 @@ function win () {
 
 function outcomeScreen (message){
 
-		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>" 
+		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>" 
 		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
 		
 		document.querySelector(".oSButton").addEventListener("click",function(event){
