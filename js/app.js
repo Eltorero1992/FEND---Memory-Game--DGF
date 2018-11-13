@@ -108,7 +108,10 @@ document.addEventListener('click',function(event){
 	 		setTimeout(function () { 
 	 			for (let card of openCardList){
 	 			card.classList.remove("open","show");
-	 			}	
+	 			card.classList.add("wrongMatch")
+	 			card.classList.add("wrongMatch")
+	 			setTimeout(function () {card.classList.remove("wrongMatch")},900)
+	 			}
 				openCardList = [];}, 750);
 
 	 		document.querySelector(".fa-star").classList.add("fa-star-o")
