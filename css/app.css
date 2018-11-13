@@ -137,6 +137,7 @@ h1 {
     text-align: center;
     width: 50%;
     display: block;
+    z-index: 10000;
     
 }   
 

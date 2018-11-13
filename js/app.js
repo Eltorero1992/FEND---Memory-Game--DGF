@@ -90,12 +90,15 @@ document.addEventListener('click',function(event){
 /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
 */
-	 		for (let card of openCardList){
+	 		setTimeout (function () {for (let card of openCardList){
 	 			card.classList.remove("open","show");
 	 			card.classList.add("match");
 	 		}
 
 	 		openCardList = [];
+
+	 		});
+
 	 		allCardsMatched()	
  	}
 
