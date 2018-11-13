@@ -96,10 +96,10 @@ document.addEventListener('click',function(event){
 	 		}
 
 	 		openCardList = [];
+	 		allCardsMatched()
+	 		}, 500);
 
-	 		});
-
-	 		allCardsMatched()	
+	
  	}
 
 /*
@@ -115,17 +115,18 @@ document.addEventListener('click',function(event){
 	 			card.classList.add("wrongMatch")
 	 			setTimeout(function () {card.classList.remove("wrongMatch")},900)
 	 			}
-				openCardList = [];}, 750);
+				openCardList = [];
 
-	 		document.querySelector(".fa-star").classList.add("fa-star-o")
-			document.querySelector(".fa-star").classList.remove("fa-star")
+				document.querySelector(".fa-star").classList.add("fa-star-o")
+				document.querySelector(".fa-star").classList.remove("fa-star")
 
-			if (document.querySelector(".stars").childElementCount === document.querySelectorAll(".fa-star-o").length) {
-				const message = "<h1 class=\"oSTitle\"> You've lost!\! <\/h1> <h1 class=\"oSTitle2\"> You did a total of "
-				outcomeScreen(message)
-			}
+				if (document.querySelector(".stars").childElementCount === document.querySelectorAll(".fa-star-o").length) {
+					const message = "<h1 class=\"oSTitle\"> You've lost!\! <\/h1> <h1 class=\"oSTitle2\"> You did a total of "
+					outcomeScreen(message)
+				}
+			}, 500);
 
-	}
+		}
 
 	
 }
