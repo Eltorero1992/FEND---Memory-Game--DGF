@@ -32,7 +32,7 @@ function shuffle([...array]) {
 function createDeck () {
 
 	let newDeck = shuffle(cardList)
-	
+
 
 	for (let card of newDeck) {
 		let newCard = "<li class=\"card\">" + card.innerHTML + "</li>";
@@ -44,6 +44,12 @@ function createDeck () {
 	}
 
 };
+
+/*
+* - Shuffle the cards on load
+*/
+
+document.onload = createDeck ()
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -81,7 +87,7 @@ document.addEventListener('click',function(event){
  function createCardList (card) {
 
  	let openCardList = document.querySelectorAll(".open",".show");
- 
+
  /*
  *  - if the list already has another card, check to see if the two cards match
  */
@@ -99,16 +105,16 @@ document.addEventListener('click',function(event){
 	 		allCardsMatched()
 	 		}, 500);
 
-	
+
  	}
 
 /*
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 */
 
-		else if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value !== openCardList[1].firstElementChild.classList.value) {	
+		else if (openCardList.length === 2 && openCardList[0].firstElementChild.classList.value !== openCardList[1].firstElementChild.classList.value) {
 			counterUp ();
-	 		setTimeout(function () { 
+	 		setTimeout(function () {
 	 			for (let card of openCardList){
 	 			card.classList.remove("open","show");
 	 			card.classList.add("wrongMatch")
@@ -128,14 +134,14 @@ document.addEventListener('click',function(event){
 
 		}
 
-	
+
 }
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  */
 
 function counterUp () {
-	document.querySelector(".moves").innerHTML = Number(document.querySelector(".moves").innerHTML) + 1   
+	document.querySelector(".moves").innerHTML = Number(document.querySelector(".moves").innerHTML) + 1
 }
 
  /*
@@ -162,19 +168,19 @@ function win () {
 	 };
 
 	allCardsMatched();
-	
+
 }
 
  /*
- * 	 + reset button flips all cards down	
+ * 	 + reset button flips all cards down
  */
 
  const resetButton = document.querySelector(".restart");
 
- resetButton.addEventListener("click",reset) 
+ resetButton.addEventListener("click",reset)
 
  function reset (){
-	
+
 	for (let card of cardList){
 	 	card.classList.remove("open","show","match");
 	 }
@@ -191,7 +197,7 @@ function win () {
 	createDeck();
 
 /*
-* - [Legacy] cardList constant and for of loop needs to be re-defined after new DOM has been created 
+* - [Legacy] cardList constant and for of loop needs to be re-defined after new DOM has been created
 */
 
 	// cardList = document.querySelectorAll('.card');
@@ -207,9 +213,9 @@ function win () {
 
 function outcomeScreen (message){
 
-		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>" 
+		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
 		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
-		
+
 		document.querySelector(".oSButton").addEventListener("click",function(event){
 			document.querySelector(".outcomeScreen").remove();
 			reset();
