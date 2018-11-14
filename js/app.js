@@ -214,14 +214,11 @@ function outcomeScreen (message){
 			document.querySelector(".outcomeScreen").remove();
 			reset();
 
+		window.addEventListener(window, function(event){
+			document.querySelector(".outcomeScreen").remove();
+			reset();
+		})
+
 })
 
-}
-
-
-
-
-
-function iWin (){
-	win()
 }
