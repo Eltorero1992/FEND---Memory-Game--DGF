@@ -49,7 +49,10 @@ function createDeck () {
 * - Shuffle the cards on load
 */
 
-document.onload = createDeck ()
+document.onload = reset ()
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -67,9 +70,27 @@ document.onload = createDeck ()
 	// }
 
 document.addEventListener('click',function(event){
-	if (event.target.className === "card" ){
+	if (event.target.className === "card"){
 		flipCard (event.target);
-		createCardList (event.target);}
+		createCardList (event.target);
+
+/*
+* - Timer function call
+*/
+		if (Number(document.querySelector(".moves").innerHTML) === 0) {
+			let startTime = 0;
+
+			function timer() {
+				startTime += 1
+				console.log(startTime)
+				setTimeout(timer, 1000)
+				allCardsMatched(startTime)
+
+			};
+
+			timer ();
+		}
+	}
 });
 
  /*
@@ -128,7 +149,7 @@ document.addEventListener('click',function(event){
 
 				if (document.querySelector(".stars").childElementCount === document.querySelectorAll(".fa-star-o").length) {
 					const message = "<h1 class=\"oSTitle\"> You've lost!\! <\/h1> <h1 class=\"oSTitle2\"> You did a total of "
-					outcomeScreen(message)
+					outcomeScreen(message,timer)
 				}
 			}, 500);
 
@@ -148,7 +169,7 @@ function counterUp () {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-function allCardsMatched (){
+function allCardsMatched (timer){
 
 	let cardsMatched = document.querySelectorAll(".match")
 
@@ -156,19 +177,9 @@ function allCardsMatched (){
 		const message = "<h1 class=\"oSTitle\"> You've won\! <\/h1> <h1 class=\"oSTitle2\"> You have finished the memory game in "
 
 		console.log("Yes \! You've won \!")
-		outcomeScreen(message);
+
+		outcomeScreen(message,timer);
 	}
-}
-
-function win () {
-
-	for (let card of cardList){
-	 	card.classList.remove("open","show");
-	 	card.classList.add("match");
-	 };
-
-	allCardsMatched();
-
 }
 
  /*
@@ -193,7 +204,7 @@ function win () {
 		emptyStar.classList.remove("fa-star-o");
 		emptyStar.classList.add("fa-star");
 	}
-
+	startTime = 0;
 	createDeck();
 
 /*
@@ -211,9 +222,9 @@ function win () {
 
  };
 
-function outcomeScreen (message){
+function outcomeScreen (message,timer){
 
-		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
+		let promptScreen = "<div class=\"outcomeScreen\">" + timer + "seconds" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
 		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
 
 		document.querySelector(".oSButton").addEventListener("click",function(event){
