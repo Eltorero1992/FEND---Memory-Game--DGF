@@ -1,3 +1,5 @@
+
+
 /*
  * Create a list that holds all of your cards
  */
@@ -45,13 +47,46 @@ function createDeck () {
 
 };
 
-/*
-* - Shuffle the cards on load
-*/
 
-document.onload = reset ()
+let seconds = 0;
+let minutes = 0;
+
+let timer = function timerFunction (status) {
+
+	let t;
+	let hello;
 
 
+	if (status === "clear") {
+
+	minutes = 0;
+	seconds = 0;
+
+	return
+
+	}
+
+	seconds++;
+
+
+	if (seconds <= 9) {
+
+		t = "0" + minutes + ":"  + "0" + seconds;
+
+	} else if (seconds > 9 && seconds <= 59) {
+
+		t = "0" + minutes + ":"  + seconds
+
+	} else if (seconds  >= 60) {
+		minutes++;
+		seconds  = 0;
+		seconds  = "0" + 0;
+		t = "0" + minutes + ":"  + seconds
+	}
+
+	console.log(t)
+	return t
+}
 
 
 /*
@@ -74,24 +109,16 @@ document.addEventListener('click',function(event){
 		flipCard (event.target);
 		createCardList (event.target);
 
+		if (Number(document.querySelector(".moves").innerHTML) === 0) {
+			setInterval(timer,1000)
+		}
 /*
 * - Timer function call
 */
-		if (Number(document.querySelector(".moves").innerHTML) === 0) {
-			let startTime = 0;
-
-			function timer() {
-				startTime += 1
-				console.log(startTime)
-				setTimeout(timer, 1000)
-				allCardsMatched(startTime)
-
-			};
-
-			timer ();
-		}
 	}
 });
+
+
 
  /*
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -105,7 +132,7 @@ document.addEventListener('click',function(event){
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  */
 
- function createCardList (card) {
+ function createCardList (card, timer) {
 
  	let openCardList = document.querySelectorAll(".open",".show");
 
@@ -149,13 +176,11 @@ document.addEventListener('click',function(event){
 
 				if (document.querySelector(".stars").childElementCount === document.querySelectorAll(".fa-star-o").length) {
 					const message = "<h1 class=\"oSTitle\"> You've lost!\! <\/h1> <h1 class=\"oSTitle2\"> You did a total of "
-					outcomeScreen(message,timer)
+					outcomeScreen(message)
 				}
 			}, 500);
 
 		}
-
-
 }
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
@@ -169,16 +194,15 @@ function counterUp () {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-function allCardsMatched (timer){
+function allCardsMatched (){
 
 	let cardsMatched = document.querySelectorAll(".match")
 
 	if (cardList.length === cardsMatched.length) {
 		const message = "<h1 class=\"oSTitle\"> You've won\! <\/h1> <h1 class=\"oSTitle2\"> You have finished the memory game in "
-
 		console.log("Yes \! You've won \!")
 
-		outcomeScreen(message,timer);
+		outcomeScreen(message);
 	}
 }
 
@@ -204,7 +228,7 @@ function allCardsMatched (timer){
 		emptyStar.classList.remove("fa-star-o");
 		emptyStar.classList.add("fa-star");
 	}
-	startTime = 0;
+
 	createDeck();
 
 /*
@@ -222,20 +246,31 @@ function allCardsMatched (timer){
 
  };
 
-function outcomeScreen (message,timer){
+function outcomeScreen (message){
 
-		let promptScreen = "<div class=\"outcomeScreen\">" + timer + "seconds" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
+		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <h1 class=\"oSTitle2\"> Total time " + timer() + " seconds! " +  "<\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
 		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
 
-		document.querySelector(".oSButton").addEventListener("click",function(event){
+		timer("clear");
+		clearInterval(timer);
+
+
+		function addOutcomeScreen (event){
+
 			document.querySelector(".outcomeScreen").remove();
+			document.removeEventListener("click", addOutcomeScreen);
+
 			reset();
 
-		window.addEventListener(window, function(event){
-			document.querySelector(".outcomeScreen").remove();
-			reset();
-		})
+		}
 
-})
+		document.querySelector(".oSButton").addEventListener("click",addOutcomeScreen);
+
+		document.addEventListener("click", addOutcomeScreen);
 
 }
+/*
+* - Shuffle the cards on load
+*/
+
+document.onload = reset ();
