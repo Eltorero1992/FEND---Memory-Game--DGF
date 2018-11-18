@@ -47,11 +47,16 @@ function createDeck () {
 
 };
 
+/*
+* - Timer function call, global variables for timer
+*/
 
 let seconds = 0;
 let minutes = 0;
+let repetitionOn;
+let repetitionOff;
 
-let timer = function timerFunction (status) {
+function timerFunction (status) {
 
 	let t;
 	let hello;
@@ -61,7 +66,6 @@ let timer = function timerFunction (status) {
 
 	minutes = 0;
 	seconds = 0;
-
 	return
 
 	}
@@ -106,15 +110,15 @@ let timer = function timerFunction (status) {
 
 document.addEventListener('click',function(event){
 	if (event.target.className === "card"){
+
+
+		if (Number(document.querySelector(".moves").innerHTML) === 0 && document.querySelectorAll(".open",".match").length === 0) {
+			repetitionOn = setInterval(timerFunction,1000)
+			console.log(repetitionOn)
+		}
+
 		flipCard (event.target);
 		createCardList (event.target);
-
-		if (Number(document.querySelector(".moves").innerHTML) === 0) {
-			setInterval(timer,1000)
-		}
-/*
-* - Timer function call
-*/
 	}
 });
 
@@ -248,12 +252,11 @@ function allCardsMatched (){
 
 function outcomeScreen (message){
 
-		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <h1 class=\"oSTitle2\"> Total time " + timer() + " seconds! " +  "<\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
+		let promptScreen = "<div class=\"outcomeScreen\">" + message + document.querySelector(".moves").innerHTML + " moves and with " + document.querySelectorAll(".fa-star").length + " stars <\/h1> <h1 class=\"oSTitle2\"> Time elapsed " + timerFunction() + "<\/h1> <button class=\"oSButton\"> Play Again <\/button> <\/div>"
 		document.querySelector(".container").insertAdjacentHTML("afterbegin",promptScreen)
 
-		timer("clear");
-		clearInterval(timer);
-
+		timerFunction("clear");
+		repetitionOff = clearInterval(repetitionOn);
 
 		function addOutcomeScreen (event){
 
