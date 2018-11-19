@@ -1,3 +1,12 @@
+img,
+embed,
+object,
+video{
+    max-width:100%;
+    height: 100%;
+}
+
+
 html {
     box-sizing: border-box;
 }
@@ -128,7 +137,7 @@ h1 {
 .outcomeScreen {
     position: fixed;
     background-color: white;
-    height: 40%;
+    height: 50%;
     width: 100%;
     -webkit-box-shadow: 10px 10px 33px -5px rgba(0,0,0,0.27);
     border-radius: 15px;
@@ -241,4 +250,220 @@ h1 {
     75% {
         -webkit-transform: translateX(-6px) rotate(-1.2deg);
       }
+}
+
+
+/************** MEDIA QUERIES *************/
+
+/******* REGULAR PHONES ******/
+
+@media  screen
+    and (max-device-width: 410px){
+
+    body .deck {
+        width: 100%;
+        height: 100%;
+        margin-top: 1.5vw;
+    }
+
+    body .deck .card {
+        width: 20vw;
+        height: 32vw;
+        margin: 1vw;
+    }
+
+    body .stars{
+        padding-left: 1vw;
+    }
+
+    body .fa-rotate-right:before, .fa-repeat:before {
+        font-size: 7vw;
+        margin-right: 2.5vw;
+        display: flex;
+        padding-top: 2vw;
+    }
+
+    body .fa-star:before,
+    .fa-star-o:before  {
+        font-size: 7vw;
+    }
+
+    body .moves{
+        margin-left: 18vw;
+        font-size: 7vw;
+    }
+
+    body .movesTitle{
+    display: none;
+    }
+
+    body .deck .card.show,
+    body .deck .card.match,
+    body .deck .card.wrongMatch {
+    font-size: 7.5vw;
+    }
+
+    header h1{
+        font-size: 9vw;
+    }
+
+    body .score-panel{
+        width: 80%;
+    }
+
+    .oSTitle {
+        font-size: 7vw;
+    }
+
+    body .oSTitle2 {
+        font-size: 5vw;
+    }
+
+    body .oSButton {
+        font-size: 6vw;
+    }
+}
+
+/******* LARGE PHONES ******/
+
+@media  screen
+    and (min-device-width: 411px)
+    and (max-device-width: 766px){
+
+    body .deck {
+        width: 100%;
+        height: 100%;
+        margin-top: 1.5vw;
+    }
+
+    body .deck .card {
+        width: 20vw;
+        height: 32vw;
+        margin: 1vw;
+    }
+
+    body .stars{
+        padding-left: 1vw;
+    }
+
+    body .fa-rotate-right:before, .fa-repeat:before {
+        font-size: 7vw;
+        margin-right: 2.5vw;
+        display: flex;
+        padding-top: 2vw;
+    }
+
+    body .fa-star:before,
+    .fa-star-o:before  {
+        font-size: 7vw;
+    }
+
+    body .moves{
+        margin-left: 18vw;
+        font-size: 7vw;
+    }
+
+    body .movesTitle{
+    display: none;
+    }
+
+    body .deck .card.show,
+    body .deck .card.match,
+    body .deck .card.wrongMatch {
+    font-size: 7.5vw;
+    }
+
+    header h1{
+        font-size: 9vw;
+    }
+
+    body .score-panel{
+        width: 80%;
+    }
+
+    .oSTitle {
+        font-size: 7vw;
+    }
+
+    body .oSTitle2 {
+        font-size: 5vw;
+    }
+
+    body .oSButton {
+        font-size: 6vw;
+    }
+}
+
+/******* TABLETS ******/
+
+@media  screen
+    and (min-device-width: 767px)
+    and (max-device-width: 1025px),{
+
+    body .deck {
+        width: 100%;
+        height: 100%;
+        margin-top: 1.5vw;
+    }
+
+    body .deck .card {
+        width: 20vw;
+        height: 23vw;
+        margin: 1vw;
+    }
+
+    body .stars{
+        padding-left: 1vw;
+    }
+
+    body .fa-rotate-right:before, .fa-repeat:before {
+        font-size: 5vw;
+        margin-right: 2.5vw;
+        display: flex;
+        padding-top: 2vw;
+    }
+
+    body .fa-star:before,
+    .fa-star-o:before  {
+        font-size: 5vw;
+    }
+
+    body .moves{
+        margin-left: 23vw;
+        font-size: 5vw;
+    }
+
+    body .movesTitle{
+    display: none;
+    }
+
+    body .deck .card.show,
+    body .deck .card.match,
+    body .deck .card.wrongMatch {
+    font-size: 7.5vw;
+    }
+
+    header h1{
+        font-size: 7vw;
+    }
+
+    body .score-panel{
+        width: 80%;
+    }
+
+    .oSTitle {
+        font-size: 7vw;
+    }
+
+    body .oSTitle2 {
+        font-size: 5vw;
+    }
+
+    body .oSButton {
+        font-size: 6vw;
+    }
+
+    body .outcomeScreen {
+        height: 48%;
+    }
 }
